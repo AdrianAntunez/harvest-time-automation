@@ -14,6 +14,7 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S',
 )
 
+
 class Harvest:
     def __init__(self):
         config = settings.Harvest()
@@ -47,6 +48,7 @@ class Harvest:
             except Exception as err:
                 logging.exception(f'Other error occurred: {err}')
             else:
+                logging.info(f"Response status code: {resp.status_code}. Response json={resp.json()}")
                 logging.info("Time added succesfully")
         else:
             logging.info("Nothing to log today, just relax!")
