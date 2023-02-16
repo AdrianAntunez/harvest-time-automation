@@ -26,11 +26,13 @@ class Harvest:
         self.amount_hours = config.AMOUNT_HOURS
         self.credential = None
 
+
     def harvest_auth(self):
         self.credential = PersonalAccessAuthCredential(
             token=self.token,
             account_id=self.account_id
         )
+
 
     def run(self):
         if utils.date.isweekday(self.today):
@@ -53,5 +55,7 @@ class Harvest:
         else:
             logging.info("Nothing to log today, just relax!")
 
+
 if __name__ == '__main__':
     Harvest().run()
+
