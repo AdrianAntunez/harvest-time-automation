@@ -7,7 +7,6 @@ def currentday():
 
 def isweekday(set_day):
     if set_day.weekday() < 5:
-      return True
+        return True
     else:
-      return False
-
+        return False
