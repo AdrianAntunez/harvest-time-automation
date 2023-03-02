@@ -264,13 +264,6 @@
             "markers": "python_version >= '3.7'",
             "version": "==3.9.0"
         },
-        "harvest": {
-            "hashes": [
-                "sha256:dc7c5416d7391d076d9085f4a094dc4088989a6bfa1635014f8833856c60ea1b"
-            ],
-            "index": "pypi",
-            "version": "==2.2.3"
-        },
         "harvest-api": {
             "hashes": [
                 "sha256:8354146d9b3a74747f11f0b91c03fda9eb69f41d431d9a271152a08dfba4a6a9"
