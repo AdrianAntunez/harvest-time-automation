@@ -2,8 +2,6 @@ name: Workflow
 on:
   push:
     branches: "**"
-  pull_request:
-    branches: "**"
 env:
   PYTHON_VERSION: 3.9
 
@@ -43,7 +41,7 @@ jobs:
         ACCOUNT_ID: ${{secrets.ACCOUNT_ID}}
         PAYROLL_PROJECT_ID: ${{secrets.PAYROLL_PROJECT_ID}}
         SOFTWARE_DEVELOPMENT_TASK_ID: ${{secrets.SOFTWARE_DEVELOPMENT_TASK_ID}}
-        AMOUNT_HOURS: ${{var.AMOUNT_HOURS}}
+        AMOUNT_HOURS: ${{env.AMOUNT_HOURS}}
       run: |
         python -m pip install -r requirements.txt --upgrade pip
         python harvest_automation/harvest-automation.py
