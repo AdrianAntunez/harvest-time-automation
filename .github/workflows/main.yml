@@ -41,7 +41,7 @@ jobs:
         ACCOUNT_ID: ${{secrets.ACCOUNT_ID}}
         PAYROLL_PROJECT_ID: ${{secrets.PAYROLL_PROJECT_ID}}
         SOFTWARE_DEVELOPMENT_TASK_ID: ${{secrets.SOFTWARE_DEVELOPMENT_TASK_ID}}
-        AMOUNT_HOURS: ${{env.AMOUNT_HOURS}}
+        AMOUNT_HOURS: ${{vars.AMOUNT_HOURS}}
       run: |
         python -m pip install -r requirements.txt --upgrade pip
         python harvest_automation/harvest-automation.py
