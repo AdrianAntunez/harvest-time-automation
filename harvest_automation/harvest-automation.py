@@ -29,7 +29,7 @@ class Harvest:
     def harvest_auth(self):
         self.credential = PersonalAccessAuthCredential(
             token=self.token,
-            account_id=self.account
+            account_id=self.account_id
         )
 
     def run(self):
@@ -44,12 +44,11 @@ class Harvest:
                     'hours': self.amount_hours
                 })
             except HTTPError as http_err:
-                logging.exception(f'HTTP error occurred: {http_err}')
+                logging.exception(f'HTTP error occurred')
             except Exception as err:
-                logging.exception(f'Other error occurred: {err}')
+                logging.exception(f'Other error occurred')
             else:
-                logging.info(f"Response status code: {resp.status_code}. Response json={resp.json()}")
-                logging.info("Time added succesfully")
+                logging.info(f"Response status code: {resp.status_code}")
         else:
             logging.info("Nothing to log today, just relax!")
 
