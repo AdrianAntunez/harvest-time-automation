@@ -6,7 +6,6 @@ on:
     branches: "**"
 env:
   PYTHON_VERSION: 3.9
-  PIP_CACHE_DIR: .cache/pip
 
 jobs:
   build_and_lint:
@@ -21,19 +20,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        pip install -r requirements.txt
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Cache pip cache files
-      uses: actions/cache/save@v3
-      id: pip-cache
-      with:
-        path: ${{ github.workspace }}/${{ env.PIP_CACHE_DIR }}
-        key: pip-cache-${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,11 +37,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYTHON_VERSION }}
-    - uses: actions/cache/restore@v3
-      id: pip-cache
-      with:
-        path: ${{ github.workspace }}/${{ env.PIP_CACHE_DIR }}
-        key: pip-cache-${{ github.sha }}
-        fail-on-cache-miss: true
     - name: execute py script
-      run: python harvest_automation/harvest-automation.py
+      run: |
+        python -m pip install -r requirements.txt --upgrade pip
+        python harvest_automation/harvest-automation.py
