@@ -7,13 +7,13 @@ import utils.date
 from harvest.credentials import PersonalAccessAuthCredential
 from harvest.endpoints import TimeEntryEndpoint
 from requests.exceptions import HTTPError
+from sys import exit
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
 )
-
 
 class Harvest:
     def __init__(self):
@@ -49,6 +49,10 @@ class Harvest:
                 logging.exception(f'Other error occurred')
             else:
                 logging.info(f"Response status code: {resp.status_code}")
+            finally:
+                # Return status_code as error code, except for 201 which is successful
+                # Return error code 1 in case resp is empty (request cannot be done by some weird reason)
+                exit(1 if not resp else (resp.status_code if resp.status_code != 201 else 0))
         else:
             logging.info("Nothing to log today, just relax!")
 
