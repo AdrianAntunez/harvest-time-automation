@@ -1,5 +1,6 @@
 from decouple import config
 
+
 class Harvest:
     TOKEN = config('TOKEN', cast=str)
     ACCOUNT_ID = config('ACCOUNT_ID', cast=str)

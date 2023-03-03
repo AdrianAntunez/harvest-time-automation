@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 harvest-api = "~=0.4"
-harvest = "~=2.2.3"
 requests = "~=2.28.2"
 python-decouple = "~=3.7"
 
